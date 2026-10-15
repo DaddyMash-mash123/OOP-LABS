@@ -15,7 +15,9 @@ Java does not allow a class to extend multiple classes because it can cause ambi
 
 ## 3. Explain the difference between overloading and overriding with an example of each.
 Overloading means having methods with the same name but different parameter lists in the same class or inheritance hierarchy for example 
-void print(int number) { }
+```void print(int number) { }
 void print(String text) { }
-Here Java chooses the appropriate method based on the argument supplied. 
+```
+Here Java chooses the appropriate method based on the argument supplied.
+While overriding happens when a subclass provides its own implementation of an inherited method.
 
