@@ -67,12 +67,22 @@ Examples:
 - ```
   SQLException
   ```
-We also created checked custom exceptions in our labs, such as InvalidAgeException and InsufficientFundsException.
-Unchecked exceptions are subclasses of RuntimeException. The compiler does not require us to catch or declare them.
+Unchecked exceptions are subclasses of RuntimeException. The compiler does not require us to catch or declare them.  
 Examples:
-- ArithmeticException
-- ArrayIndexOutOfBoundsException
-In Lab 7, we handled exceptions such as division by zero and invalid array indexes. Our custom checked exceptions allowed us to represent specific errors, such as invalid ages or insufficient funds.
+- ```
+  ArithmeticException
+  ```
+- ```
+  ArrayIndexOutOfBoundsException
+  ```
+### 8. Why can generics not be used with primitive types, and what is type erasure?
+Java generics work with reference types, not primitive types. That is why we write ArrayList<Integer> rather than ArrayList<int>.
+We use wrapper classes for primitive values:
+- int becomes Integer
+- double becomes Double
+- char becomes Character
+In Lab 8, our generic stack used Stack<T>, allowing it to store different object types safely.
+Type erasure means that Java generally removes generic type information during compilation, replacing type parameters with their bounds or Object where appropriate. This is one reason generic types cannot simply be primitive types.
 
 
 
