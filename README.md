@@ -8,10 +8,11 @@ DEPARTMENT: COMPUTER SCIENCE
 ## 1. What is the difference between a class and an object? Where in memory does each live?
 A class is a blueprint that defines the properties and behaviours of something, while an object is an actual instance created from that class.
 For example, in the Library Management System, Book is a class, while a particular book with ID B001 and title Java Basics is an object.
-In memory, the class's runtime representation is maintained by the JVM, typically in the method area or equivalent runtime structures. Objects are normally allocated on the heap. A local variable that refers to an object may live in a stack frame, but the object itself is on the heap.
+In memory, the class's runtime representation is maintained by the JVM  in the method area or equivalent runtime structures. Objects are normally allocated on the heap. A local variable that refers to an object may live in a stack frame, but the object itself is on the heap.
 
 ## 2. Why does Java not allow multiple inheritance of classes, and how do interfaces work around it?
-Java does not allow a class to extend multiple classes because it can cause ambiguity. For example, if two parent classes have a method with the same name, Java would need to decide which implementation the child should inherit. Interfaces allow a class to implement multiple contracts without inheriting the full state and implementation of multiple parent classes.
+Java does not allow a class to extend multiple classes because it can cause ambiguity.  
+For example, if two parent classes have a method with the same name, Java would need to decide which implementation the child should inherit. Interfaces allow a class to implement multiple contracts without inheriting the full state and implementation of multiple parent classes.
 
 ## 3. Explain the difference between overloading and overriding with an example of each.
 Overloading means having methods with the same name but different parameter lists in the same class or inheritance hierarchy for example 
@@ -19,7 +20,7 @@ Overloading means having methods with the same name but different parameter list
 void print(int number) { }
 void print(String text) { }
 ```
-Here Java chooses the appropriate method based on the argument supplied.
+Here Java chooses the appropriate method based on the argument supplied.  
 While overriding happens when a subclass provides its own implementation of an inherited method. For example
 ```
 class Animal {
@@ -38,7 +39,7 @@ class Cat extends Animal {
 When sound() is called on a Cat object, the overridden version runs.
 
 ### 4. What happens if a superclass has no no-argument constructor and the subclass omits super(...)?
-Java automatically tries to insert a call to super() as the first statement of the subclass constructor. If the parent class has no accessible no-argument constructor, compilation fails. We saw this in Lab 4 with the constructor inheritance example. If Animal only has Animal(String name), then Dog must explicitly call the matching constructor:
+Java automatically tries to insert a call to super() as the first statement of the subclass constructor. If the parent class has no accessible no-argument constructor, compilation fails. It is demonstrated in lab 4 with the constructor inheritance example. If Animal only has Animal(String name), then Dog must explicitly call the matching constructor
 ```
 class Dog extends Animal {
     Dog(String name) {
@@ -49,12 +50,29 @@ class Dog extends Animal {
 This passes the name to the parent constructor.
 
 ### 5. When would you choose an abstract class over an interface?
-I would choose an abstract class when related classes need to share common fields, constructors, or implemented methods, while still leaving some behaviour for subclasses to define. For example, our LibraryItem abstract class contains common properties such as the item ID, title and availability. Book and Dvd inherit those properties but provide their own loan periods. I would choose an interface when I want different classes to follow the same contract, even if they are not closely related by inheritance. Our Borrowable interface defines borrowing and returning operations.
+I would choose an abstract class when related classes need to share common fields, constructors, or implemented methods, while still leaving some behaviour for subclasses to define. For example, the LibraryItem abstract class contains common properties such as the item ID, title and availability. Book and Dvd inherit those properties but provide their own loan periods.  
+I would choose an interface when I want different classes to follow the same contract, even if they are not closely related by inheritance. The Borrowable interface defines borrowing and returning operations.
 
 ### 6. Why must hashCode() be overridden whenever equals() is overridden?
 Because Java requires objects that are equal according to equals() to return the same hash code.
 Collections such as HashSet and HashMap use hash codes to help locate objects. If two equal objects have different hash codes, a collection might treat them incorrectly.  
-In our Lab 9 work, when we compared books using their ISBN, we needed both equals() and hashCode() to use the ISBN. This allowed a HashSet to recognise two books with the same ISBN as duplicates.
+In the Lab 9 work, when we compared books using their ISBN, both needed equals() and hashCode() were needed to use the ISBN. This allowed a HashSet to recognize two books with the same ISBN as duplicates.
+
+### 7. What is the difference between checked and unchecked exceptions? Give two examples of each.
+Checked exceptions are checked by the compiler. A method must catch them or declare that it throws them.  
+Examples:  
+- ```
+  IOException
+  ```
+- ```
+  SQLException
+  ```
+We also created checked custom exceptions in our labs, such as InvalidAgeException and InsufficientFundsException.
+Unchecked exceptions are subclasses of RuntimeException. The compiler does not require us to catch or declare them.
+Examples:
+- ArithmeticException
+- ArrayIndexOutOfBoundsException
+In Lab 7, we handled exceptions such as division by zero and invalid array indexes. Our custom checked exceptions allowed us to represent specific errors, such as invalid ages or insufficient funds.
 
 
 
