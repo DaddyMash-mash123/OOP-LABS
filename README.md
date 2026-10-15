@@ -12,5 +12,7 @@ In memory, the class's runtime representation is maintained by the JVM, typicall
 
 ## 2. Why does Java not allow multiple inheritance of classes, and how do interfaces work around it?
 Java does not allow a class to extend multiple classes because it can cause ambiguity. For example, if two parent classes have a method with the same name, Java would need to decide which implementation the child should inherit. Interfaces allow a class to implement multiple contracts without inheriting the full state and implementation of multiple parent classes.
+For example:
+<img width="490" height="62" alt="image" src="https://github.com/user-attachments/assets/23896f5e-8864-49b2-ac29-e3c82d35414d" />
+Here, Book extends one class but can implement multiple interfaces.
 
-<img width="46" height="20" alt="image" src="https://github.com/user-attachments/assets/014e58e5-2728-442c-a748-d52e462b6af6" />
