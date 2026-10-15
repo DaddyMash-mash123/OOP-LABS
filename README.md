@@ -75,14 +75,39 @@ Examples:
 - ```
   ArrayIndexOutOfBoundsException
   ```
+
 ### 8. Why can generics not be used with primitive types, and what is type erasure?
 Java generics work with reference types, not primitive types. That is why we write ArrayList<Integer> rather than ArrayList<int>.
 We use wrapper classes for primitive values:
+```
 - int becomes Integer
 - double becomes Double
 - char becomes Character
-In Lab 8, our generic stack used Stack<T>, allowing it to store different object types safely.
+```
 Type erasure means that Java generally removes generic type information during compilation, replacing type parameters with their bounds or Object where appropriate. This is one reason generic types cannot simply be primitive types.
 
+### 9. What does final mean on a variable, a method and a class?
+The meaning depends on where it is used.  
+- Final variable: It can be assigned only once. If it is an object reference, the reference cannot be reassigned, although the object's contents might still change.
+- Final method: A subclass cannot override that method.
+- Final class: Another class cannot extend it.
+For example
+```
+final int MAX_LOANS = 3;
+```
+### 10. Explain dynamic method dispatch. Why are fields and static methods not polymorphic?
+Dynamic method dispatch is when Java decides at runtime which overridden instance method to execute, based on the actual object type rather than just the reference type.  
+For example:
+```
+Animal animal = new Cat();
+animal.sound();
+```
+Even though the reference type is Animal, Java executes Cat's sound() method.  
+Fields behave differently: field access depends on the reference's declared type. Static methods are associated with classes and are hidden rather than overridden, so they do not use dynamic dispatch in the same way as instance methods.
 
+### 11. What is a functional interface, and how does a lambda relate to it?
+A functional interface is an interface with exactly one abstract method. It can be implemented using a lambda expression, which provides a concise way to supply that method's behaviour.
 
+### 12. How do try-with-resources differ from try/finally?
+Try-with-resources automatically closes resources that implement AutoCloseable, such as many file readers and writers, when the try block finishes, including when an exception occurs.  
+A traditional try/finally uses a finally block to run cleanup code whether an exception occurs or not.
