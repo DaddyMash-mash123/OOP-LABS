@@ -11,7 +11,6 @@ For example, in the Library Management System, Book is a class, while a particul
 In memory, the class's runtime representation is maintained by the JVM, typically in the method area or equivalent runtime structures. Objects are normally allocated on the heap. A local variable that refers to an object may live in a stack frame, but the object itself is on the heap.
 
 ## 2. Why does Java not allow multiple inheritance of classes, and how do interfaces work around it?
-Java does not allow a class to extend multiple classes because it can cause ambiguity. For example, if two parent classes have a method with the same name, Java would need to decide which implementation the child should inherit. Interfaces allow a class to implement multiple contracts without inheriting the full state and implementation of multiple parent classes.###For example
-class Book extends LibraryItem implements Borrowable, CsvSerializable {
-    // Implement the required interface methods.
-}
+Java does not allow a class to extend multiple classes because it can cause ambiguity. For example, if two parent classes have a method with the same name, Java would need to decide which implementation the child should inherit. Interfaces allow a class to implement multiple contracts without inheriting the full state and implementation of multiple parent classes.
+
+<img width="46" height="20" alt="image" src="https://github.com/user-attachments/assets/014e58e5-2728-442c-a748-d52e462b6af6" />
