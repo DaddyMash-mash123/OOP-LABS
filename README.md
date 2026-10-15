@@ -15,9 +15,44 @@ Java does not allow a class to extend multiple classes because it can cause ambi
 
 ## 3. Explain the difference between overloading and overriding with an example of each.
 Overloading means having methods with the same name but different parameter lists in the same class or inheritance hierarchy for example 
-```void print(int number) { }
+```
+void print(int number) { }
 void print(String text) { }
 ```
 Here Java chooses the appropriate method based on the argument supplied.
-While overriding happens when a subclass provides its own implementation of an inherited method.
+While overriding happens when a subclass provides its own implementation of an inherited method. For example
+```
+class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Meow");
+    }
+}
+```
+When sound() is called on a Cat object, the overridden version runs.
+
+###4. What happens if a superclass has no no-argument constructor and the subclass omits super(...)?
+Java automatically tries to insert a call to super() as the first statement of the subclass constructor. If the parent class has no accessible no-argument constructor, compilation fails. We saw this in Lab 4 with the constructor inheritance example. If Animal only has Animal(String name), then Dog must explicitly call the matching constructor:
+```
+class Dog extends Animal {
+    Dog(String name) {
+        super(name);
+    }
+}
+```
+This passes the name to the parent constructor.
+
+###5. When would you choose an abstract class over an interface?
+I would choose an abstract class when related classes need to share common fields, constructors, or implemented methods, while still leaving some behaviour for subclasses to define. For example, our LibraryItem abstract class contains common properties such as the item ID, title and availability. Book and Dvd inherit those properties but provide their own loan periods. I would choose an interface when I want different classes to follow the same contract, even if they are not closely related by inheritance. Our Borrowable interface defines borrowing and returning operations.
+
+###6. Why must hashCode() be overridden whenever equals() is overridden?
+Because Java requires objects that are equal according to equals() to return the same hash code.
+Collections such as HashSet and HashMap use hash codes to help locate objects. If two equal objects have different hash codes, a collection might treat them incorrectly.
+In our Lab 9 work, when we compared books using their ISBN, we needed both equals() and hashCode() to use the ISBN. This allowed a HashSet to recognise two books with the same ISBN as duplicates.
 
